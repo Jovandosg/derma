@@ -1,0 +1,23 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+    binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]
+    output = "/home/ubuntu/derma_analysis_app/node_modules/.prisma/client"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model ImageAnalysis {
+  id             String   @id @default(cuid())
+  originalImage  String   // Path to the original image
+  result         String   // Analysis result (benign/malignant)
+  confidence     Float    // Confidence score of the analysis
+  additionalInfo Json?    // Additional information from the analysis
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}

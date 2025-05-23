@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #ff7a00;
+  --primary-dark: #e56e00;
+  --secondary: #0066cc;
+  --secondary-dark: #004c99;
+  --background: #ffffff;
+  --foreground: #000000;
+  --muted: #f5f5f5;
+  --muted-foreground: #6b7280;
+  --border: #e2e8f0;
+}
+
+.dark {
+  --primary: #ff7a00;
+  --primary-dark: #ff9633;
+  --secondary: #3b82f6;
+  --secondary-dark: #60a5fa;
+  --background: #121212;
+  --foreground: #ffffff;
+  --muted: #1e1e1e;
+  --muted-foreground: #9ca3af;
+  --border: #2d2d2d;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.upload-container {
+  border: 2px dashed var(--border);
+  transition: all 0.3s ease;
+}
+
+.upload-container:hover, .upload-container.drag-active {
+  border-color: var(--primary);
+  background-color: rgba(255, 122, 0, 0.05);
+}
+
+.btn-primary {
+  @apply bg-[var(--primary)] hover:bg-[var(--primary-dark)] text-white font-medium py-2 px-4 rounded-md transition-all duration-300 ease-in-out;
+}
+
+.btn-secondary {
+  @apply bg-[var(--secondary)] hover:bg-[var(--secondary-dark)] text-white font-medium py-2 px-4 rounded-md transition-all duration-300 ease-in-out;
+}
+
+.card {
+  @apply bg-white dark:bg-[var(--muted)] rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg;
+}
+
+.result-card {
+  @apply p-6 rounded-lg shadow-md transition-all duration-300;
+}
+
+.result-card.benign {
+  @apply bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800;
+}
+
+.result-card.malignant {
+  @apply bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800;
+}
+
+/* SUPPORT NEXTJS ERROR UI */
+nextjs-portal {
+  display: none;
+}
